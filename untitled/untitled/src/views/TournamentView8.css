@@ -1,0 +1,371 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    position: relative;
+    width: 100%;
+    background-color: transparent;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    color: white;
+    /* Zapobiega poziomemu przesuwaniu przez szeroki nagłówek */
+    overflow-x: hidden;
+}
+
+/* --- KONTENER GŁÓWNY --- */
+.view-container {
+    position: relative;
+    z-index: 10;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding-top: 120px;
+    color: var(--text-main);
+    width: 100%;
+}
+
+/* --- NAGŁÓWEK NA CAŁĄ SZEROKOŚĆ --- */
+.view-header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 20px 60px;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+/* --- DRABINKA (CENTROWANA SZYBA) --- */
+.bracket-container {
+    display: flex;
+    gap: 0;
+    padding: 60px 40px;
+    width: fit-content;
+    min-width: 60%;
+    max-width: 95%;
+    margin: 80px auto;
+
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+
+    overflow-x: auto; /* Pozwala przewijać drabinkę w bok */
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: relative;
+    z-index: 15;
+}
+
+/* --- STYLIZACJA STATUSU (PIGUŁKI) --- */
+.status-pill {
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: 1px solid currentColor;
+    background: rgba(0, 0, 0, 0.4);
+    display: inline-block;
+}
+
+.status-pill.planned { color: #00d4ff; border-color: rgba(0, 212, 255, 0.4); }
+.status-pill.active {
+    color: var(--accent-primary);
+    box-shadow: 0 0 10px var(--shadow-neon);
+    animation: pulse-active 2s infinite;
+}
+.status-pill.done { color: #888; border-color: #555; }
+
+@keyframes pulse-active {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+/* --- ELEMENTY NAGŁÓWKA --- */
+.neon-title-main {
+    margin: 0;
+    color: white;
+    text-shadow: var(--shadow-neon);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.title-section { text-align: center; flex-grow: 1; }
+.back-div, .header-spacer { width: 180px; }
+.status-container { display: flex; gap: 12px; justify-content: center; margin-top: 8px; }
+
+/* --- DRABINKA - KOLUMNY I MECZE --- */
+.round-column {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    flex-shrink: 0;
+}
+
+
+.round-title {
+    height: 60px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--accent-primary);
+    text-shadow: var(--shadow-neon);
+    letter-spacing: 2px;
+}
+
+.match-box {
+    background: rgba(255, 255, 255, 0.04);
+    border: 2px solid var(--accent-primary);
+    box-shadow: 0 0 15px var(--accent-primary);
+    border-radius: 12px;
+    padding: 18px;
+    margin: 20px;
+    position: relative;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+            box-shadow 0.3s ease,
+            border-color 0.3s ease;
+    cursor: pointer;
+}
+
+.match-box:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px var(--accent-primary),
+    inset 0 0 10px rgba(255, 255, 255, 0.2);
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.match-box.clickable {
+    cursor: pointer;
+    border: 3px solid var(--accent-primary);
+    box-shadow: 0 0 15px var(--accent-primary); /* Użycie bezpośrednie zmiennej */
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.match-box.disabled {
+    opacity: 0.5;
+    filter: grayscale(1);
+    cursor: not-allowed;
+}
+
+.match-box.disabled:hover {
+    transform: scale(1);
+    box-shadow: 0 0 15px var(--accent-primary);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+/* Wyrównanie matematyczne */
+.round-column:nth-child(2) .match-box { margin-top: 105px; margin-bottom: 105px; }
+.round-column:nth-child(3) .match-box { margin-top: 275px; margin-bottom: 275px; }
+.round-column:nth-child(4) .match-box { margin-top: 615px; }
+
+.team-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 5px;
+    color: white;
+}
+
+.team-score {
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: var(--accent-secondary); /* Wyniki w kolorze secondary (np. niebieski/biały) */
+    text-shadow: 0 0 8px var(--accent-secondary);
+}
+
+.match-box::after {
+    content: "";
+    position: absolute;
+    right: -41px;
+    top: 50%;
+    width: 41px;
+    height: 2px;
+    background-color: var(--accent-primary);
+    box-shadow: 0 0 8px var(--shadow-neon);
+    z-index: -1;
+}
+
+.round-column:last-child .match-box::after { display: none; }
+
+/* --- MODAL --- */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(15px);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 9999;
+}
+
+.modal-content {
+    width: 90%;
+    max-width: 700px;
+    background: rgba(15, 15, 25, 0.95);
+    border: 2px solid var(--accent-primary);
+    box-shadow: 0 0 40px var(--shadow-neon);
+    padding: 40px;
+    border-radius: 24px;
+    position: relative;
+    text-align: center;
+}
+
+.close-button {
+    position: absolute;
+    top: 20px; right: 20px;
+    background: none; border: none;
+    color: white; font-size: 2rem;
+    cursor: pointer; opacity: 0.6;
+}
+
+.close-button:hover { opacity: 1; color: var(--accent-primary); }
+
+.match-timer {
+    font-family: 'Courier New', monospace;
+    font-size: 1.5rem;
+    color: var(--accent-primary);
+    margin-bottom: 10px;
+}
+
+.match-controls {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 40px 0;
+}
+
+.team-control-box h3 {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+
+.score-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+
+.big-score {
+    font-size: 5rem;
+    font-weight: 800;
+    min-width: 80px;
+    text-shadow: 0 0 20px var(--accent-primary);
+}
+
+
+.btn-score {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--accent-primary);
+    color: white;
+    width: 45px; height: 45px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+
+.btn-score:hover {
+    background: var(--accent-primary);
+    color: black;
+    box-shadow: 0 0 15px var(--accent-primary);
+}
+
+
+
+.vs-divider {
+    font-style: italic;
+    font-weight: 900;
+    font-size: 1.5rem;
+    opacity: 0.3;
+}
+
+.finish-btn {
+    margin-top: 20px;
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    background: transparent;
+    border: 2px solid var(--accent-primary);
+    color: var(--accent-primary);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+
+.finish-btn:hover {
+    background: var(--accent-primary);
+    color: black;
+    box-shadow: 0 0 30px var(--accent-primary);
+}
+
+
+
+/* --- RESPONSYWNOŚĆ (Styl z List View) --- */
+@media (max-width: 768px) {
+    .view-header-top {
+        position: relative; /* Przestaje być przyklejony, by nie zasłaniać ekranu */
+        flex-direction: column;
+        padding: 20px;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .view-container {
+        padding-top: 0; /* Bo zdjęliśmy fixed w headerze */
+    }
+
+    .back-div, .header-spacer {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .back-btn {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .neon-title-main {
+        font-size: 1.8rem;
+    }
+
+    .bracket-container {
+        margin: 20px 0;
+        width: 100%;
+        min-width: 100%;
+        border-radius: 0;
+        padding: 20px 10px;
+    }
+
+    .round-column {
+        width: 280px;
+        min-width: 280px;
+    }
+
+    .match-box::after {
+        display: none;
+    }
+}

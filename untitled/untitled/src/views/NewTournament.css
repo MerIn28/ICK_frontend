@@ -1,0 +1,108 @@
+.create-container {
+    padding: 40px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    min-height: 100vh;
+}
+
+.setup-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.glass-panel {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    padding: 30px;
+    text-align: left;
+}
+
+.section-title {
+    color: var(--accent-primary);
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    border-bottom: 1px solid var(--accent-primary);
+    padding-bottom: 10px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+input[type="text"], select {
+    width: 100%;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-color);
+    color: white;
+    font-family: var(--sans);
+    outline: none;
+}
+
+input:focus {
+    border-color: var(--accent-secondary);
+}
+
+.add-team-row {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-add {
+    background: var(--accent-primary);
+    border: none;
+    color: black;
+    padding: 0 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.teams-list {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.team-chip {
+    background: var(--glass-bg);
+    border: 1px solid var(--accent-secondary);
+    padding: 5px 12px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+}
+
+.team-chip button {
+    background: none;
+    border: none;
+    color: var(--accent-secondary);
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.submit-btn {
+    margin-top: 50px;
+    width: 100%;
+}
+
+/* RWD */
+@media (max-width: 768px) {
+    .setup-grid {
+        grid-template-columns: 1fr;
+    }
+}

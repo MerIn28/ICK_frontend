@@ -1,0 +1,85 @@
+:root {
+  --sans: 'Orbitron', system-ui, sans-serif;
+  --mono: ui-monospace, monospace;
+
+
+  --color-green: #ff8c00;
+  --color-orange: #ffe937;
+  --color-purple: #ff0055;
+
+
+  --bg-primary: rgb(10 10 12 / 0);
+  --bg-secondary: #16171d;
+  --accent-primary: var(--color-green);
+  --accent-secondary: #0077ff;
+  --text-main: #ffffff;
+  --text-muted: #9ca3af;
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --shadow-neon: 0 0 15px rgb(255 255 255 / 0.5);
+}
+
+
+[data-theme='Ov2'] {
+  --accent-primary: var(--color-orange);
+  --accent-secondary: #ffffff;
+  --shadow-neon: 0 0 15px rgb(255 179 0 / 0.5);
+}
+
+/* Przykładowy motyw (Midnight Blue) */
+[data-theme='Val'] {
+  --accent-primary: var(--color-purple);
+  --accent-secondary: #ffffff;
+  --shadow-neon: 0 0 15px rgb(255 0 178 / 0.5);
+}
+
+html, body {
+  background-color: #000; /* Czarne tło jako baza pod przezroczyste #root */
+  margin: 0;
+  overflow-x: hidden;
+}
+
+#root {
+  background-color: transparent;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: clamp(2rem, 8vw, 4rem);
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: var(--text-main);
+  text-shadow: var(--shadow-neon);
+}
+
+.btn-neon {
+  padding: 15px 30px;
+  font-family: var(--sans);
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  background: var(--glass-bg);
+  backdrop-filter: blur(5px);
+  border: 1px solid var(--accent-primary);
+  color: var(--accent-primary);
+  transition: all 0.3s ease;
+}
+
+.btn-neon:hover {
+  background: var(--accent-primary);
+  color: #000;
+  box-shadow: 0 0 30px var(--accent-primary);
+  transform: translateY(-2px);
+}
+
+.back-btn {
+  font-size: 1.2rem;
+  padding: 15px 35px;
+  gap: 12px;
+  font-weight: bold;
+  min-width: 180px;
+}
+
+.back-div {
+  margin-bottom: 40px;
+  display: flex;
+}
