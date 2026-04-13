@@ -156,7 +156,6 @@ const TournamentView: React.FC = () => {
             <BackgroundVideo />
             <div className="view-container">
 
-                {/* ZAKTUALIZOWANY NAGŁÓWEK */}
                 <div className="view-header-top">
                     <div className="back-div">
                         <button className="btn-neon back-btn" onClick={() => navigate('/list')}>
@@ -172,7 +171,7 @@ const TournamentView: React.FC = () => {
                             </span>
                         </div>
                     </div>
-                    <div className="header-spacer"></div> {/* Pusty div do wyśrodkowania flexboxa */}
+                    <div className="header-spacer"></div> 
                 </div>
 
                 <div className="bracket-container">

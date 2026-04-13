@@ -25,7 +25,7 @@
   --shadow-neon: 0 0 15px rgb(255 179 0 / 0.5);
 }
 
-/* Przykładowy motyw (Midnight Blue) */
+
 [data-theme='Val'] {
   --accent-primary: var(--color-purple);
   --accent-secondary: #ffffff;
@@ -33,7 +33,7 @@
 }
 
 html, body {
-  background-color: #000; /* Czarne tło jako baza pod przezroczyste #root */
+  background-color: #000; 
   margin: 0;
   overflow-x: hidden;
 }

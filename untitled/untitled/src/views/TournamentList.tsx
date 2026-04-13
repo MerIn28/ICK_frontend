@@ -35,7 +35,6 @@ const TournamentList: React.FC = () => {
         fetchTournaments();
     }, []);
 
-    // --- DEBUGOWANIE: SPRAWDŹ CO PRZYCHODZI Z BAZY W KONSOLI (F12) ---
     useEffect(() => {
         if (tournaments.length > 0) {
             console.log("Dane turniejów z bazy:", tournaments);
@@ -57,7 +56,6 @@ const TournamentList: React.FC = () => {
     };
 
     const getStatusClass = (status: any) => {
-        // Obsługa przypadku, gdy status jest obiektem lub stringiem
         const s = typeof status === 'object' ? status.value : status;
         switch (s) {
             case 'PLANNED': return 'status-planned';

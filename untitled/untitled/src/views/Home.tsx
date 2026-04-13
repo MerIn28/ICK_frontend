@@ -2,10 +2,8 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Home.css';
 
-//Importy komponentów
 import ThemeSwitcher from "../components/ThemeSwitcher.tsx";
 
-//Importy video
 import video1 from "../assets/video/video1.mp4"
 import video2 from "../assets/video/video2.mp4"
 import video3 from "../assets/video/video3.mp4"
